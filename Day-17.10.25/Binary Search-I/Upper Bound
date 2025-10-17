@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int upperBound(vector<int>& arr, int target) {
+        int low = 0;
+        int high = arr.size();
+        
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            
+            if (arr[mid] <= target)
+                low = mid + 1;   // move right (need greater element)
+            else
+                high = mid;      // mid might be upper bound
+        }
+        
+        return low;  // gives index of first element > target
+    }
+};
