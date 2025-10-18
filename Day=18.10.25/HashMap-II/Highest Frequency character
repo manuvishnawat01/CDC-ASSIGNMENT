@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    char getMaxOccuringChar(string& s) {
+        unordered_map<char, int> mp;
+
+        for (auto c : s) {
+            mp[c]++;
+        }
+
+        int maxFreq = 0;
+        char ans = 'z';  // start with largest possible letter
+
+        for (auto m : mp) {
+            if (m.second > maxFreq) {
+                maxFreq = m.second;
+                ans = m.first;
+            }
+            else if (m.second == maxFreq && m.first < ans) {
+                ans = m.first; // pick lexicographically smaller one
+            }
+        }
+
+        return ans;
+    }
+};
